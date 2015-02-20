@@ -1,0 +1,19 @@
+/* =============================================================================
+Variables
+============================================================================= */
+/* =============================================================================
+Export
+============================================================================= */
+#exportContent {
+  align-content: center;
+  text-align: center; }
+  #exportContent #fileame-label {
+    padding-right: 38%; }
+  #exportContent #fileName {
+    font-size: 0.75em;
+    padding: 0.3em 0em 0.3em 0.3em; }
+  #exportContent #exportButton {
+    width: 81.8%;
+    font-size: 0.75em;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em; }

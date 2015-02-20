@@ -1,0 +1,178 @@
+@import "partials/_variables.scss";
+@import "modules/helpers/_helpers.scss";
+@import "modules/mapToolbar/_map-toolbar";
+@import "modules/map-controller/_map-controller.scss";
+@import "modules/full-table/_full-table.scss";
+@import "modules/visualization/_visualization.scss";
+@import "modules/export/_export.scss";
+@import "modules/polygon-selection/_polygon-selection.scss";
+@import "modules/classification/_classification.scss";
+
+/*
+=============================================================================
+Main Styles
+========================================================================== */
+body {
+	background: $body-background;
+	font-family: $base-font-family;
+	font-size: $base-font-size;
+	line-height: $base-line-height;
+	@extend %transition-all;
+	@extend %margin-none;
+	@extend %padding-none;
+	height: 100%;
+}
+
+html {
+	height: 100%;
+	overflow: hidden;
+}
+
+button {
+	cursor: pointer;
+	&[disabled] {
+		cursor: not-allowed;
+		@extend %opacity-05;
+	}
+}
+
+.container {
+	max-width: $container-max-width;
+	margin: 0 auto;
+}
+
+.ui-dialog {
+	@extend %bordered;
+	@extend %normal-padding;
+	background: fade-out($body-background, 0.05);
+	&.ui-draggable {
+		.ui-widget-header {
+			cursor: move;
+		}
+	}
+	.ui-dialog-titlebar {
+		@extend %small-padding;
+		//@extend header;
+		@extend %small-margin-bottom;
+		@extend %bordered-bottom;
+	}
+	.ui-button {
+		&.ui-dialog-titlebar-close {
+			float: right;
+		}
+	}
+}
+
+.ui-resizable {
+	@extend %relative;
+}
+
+.ui-resizable-handle {
+	@extend %absolute;
+	font-size: 0.1em;
+	display: block;
+}
+
+.ui-resizable-disabled .ui-resizable-handle,
+.ui-resizable-autohide .ui-resizable-handle {
+	@extend %hidden;
+}
+
+.ui-resizable-n {
+	cursor: n-resize;
+	height: 0.5em;
+	width: 100%;
+	top: -0.3em;
+	left: 0;
+}
+.ui-resizable-s {
+	cursor: s-resize;
+	height: 0.5em;
+	width: 100%;
+	bottom: -0.3em;
+	left: 0;
+}
+.ui-resizable-e {
+	cursor: e-resize;
+	width: 0.5em;
+	right: -0.3em;
+	top: 0;
+	height: 100%;
+}
+.ui-resizable-w {
+	cursor: w-resize;
+	width: 0.5em;
+	left: -0.3em;
+	top: 0;
+	height: 100%;
+}
+.ui-resizable-se {
+	cursor: se-resize;
+	width: 12px;
+	height: 12px;
+	right: 1px;
+	bottom: 1px;
+}
+.ui-resizable-sw {
+	cursor: sw-resize;
+	width: 0.6em;
+	height: 0.6em;
+	left: -0.3em;
+	bottom: -0.3em;
+}
+.ui-resizable-nw {
+	cursor: nw-resize;
+	width: 0.6em;
+	height: 0.6em;
+	left: -0.3em;
+	top: -0.3em;
+}
+.ui-resizable-ne {
+	cursor: ne-resize;
+	width: 0.6em;
+	height: 0.6em;
+	right: -0.3em;
+	top: -0.3em;
+}
+
+.white-popup {
+	width: 50em;
+	height: 35em;
+	margin: 25px auto;
+}
+
+.ui-accordion {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.ui-accordion .ui-accordion-header {
+	display: block;
+	cursor: pointer;
+	position: relative;
+	padding: .15em .15em .15em 1em;
+	min-height: 0; /* support: IE7 */
+	background: darken($mapToolbarButtonColour, 10);
+	border: 1px solid black;
+	outline: none;
+	margin-top: 0.5em;
+	margin-bottom: 0em;
+}
+
+.ui-accordion .ui-accordion-content {
+	padding: .5em .5em .5em .5em;
+	border: 1px solid black;
+	border-top: none;
+	overflow: auto;
+	outline: none;
+}
+
+#group-logo {
+	border: 0em;
+	opacity: 0.5;
+	position: absolute;
+	bottom: 1.1em;
+	left: 0.1em;
+	width: 8em;
+	height: auto;
+}

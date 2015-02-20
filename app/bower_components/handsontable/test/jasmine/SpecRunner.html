@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+  <meta charset="utf-8">
+  <title>Jasmine Spec Runner</title>
+  <link rel="stylesheet" type="text/css" href="lib/jasmine/jasmine.css">
+
+  <link rel="stylesheet" type="text/css" href="css/SpecRunner.css">
+
+  <link rel="stylesheet" type="text/css" href="../../dist/handsontable.css">
+
+  <link rel="stylesheet" type="text/css" href="../../plugins/removeRow/handsontable.removeRow.css">
+
+  <link rel="stylesheet" type="text/css" href="../../lib/jquery-ui/css/ui-bootstrap/jquery-ui.custom.css">
+
+
+
+  <script src="lib/jasmine/phantom-polyfill.js"></script>
+  <script src="lib/jasmine/jasmine.js"></script>
+  <script src="lib/jasmine/jasmine-html.js"></script>
+
+
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="../../lib/jquery.min.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="../../lib/numeral.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="../../lib/numeral.de-de.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="lib/jasmine-extensions.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/SpecHelper.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="lib/nodeShim.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/test-init.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="../../dist/handsontable.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="../../demo/js/backbone/lodash.underscore.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="../../demo/js/backbone/backbone.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="../../demo/js/backbone/backbone-relational/backbone-relational.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="../../lib/jquery-ui/js/jquery-ui.custom.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="../../plugins/removeRow/handsontable.removeRow.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/ColHeaderSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_alterSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_beforeKeyDownSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_beforechangeSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_copySpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_countSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_dataSchemaSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_datachangeSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_destroyEditorSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_destroySpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_getCellMetaSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_getColHeaderSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_getDataAt___Spec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_getRowHeaderSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_initSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_isEmptySpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_keepEmptyRowsSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_listenSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_loadDataSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_navigationSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_onKeyDownSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_pasteSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_populateFromArraySpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_removeCellMetaSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_renderSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_selectionSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_setCellMetaSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_setDataAtCellSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_spliceSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_updateSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_validateSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/Core_viewSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/DomSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/EventSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/FillHandleSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/PerformanceSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/RowHeaderSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/multiMapSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/editors/autocompleteEditorSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/editors/baseEditorSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/editors/dateEditorSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/editors/dropdownEditorSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/editors/handsontableEditorSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/editors/numericEditorSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/editors/passwordEditorSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/editors/selectEditorSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/editors/textEditorSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/plugins/PluginHooksSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/plugins/UndoRedoSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/plugins/autoColumnSizeSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/plugins/columnSortingSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/plugins/contextMenuSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/plugins/copyPasteSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/plugins/customBordersSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/plugins/manualColumnMoveSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/plugins/manualColumnResizeSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/plugins/manualRowMoveSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/plugins/manualRowResizeSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/plugins/observeChangesSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/plugins/persistentStateSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/plugins/searchSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/renderers/autocompleteRendererSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/renderers/cellDecoratorSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/renderers/checkboxRendererSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/renderers/numericRendererSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/renderers/passwordRendererSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/renderers/textRendererSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/settings/colWidthsSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/settings/copyableSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/settings/currentRowClassNameSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/settings/editorSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/settings/fragmentSelectionSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/settings/rendererSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/validators/numericValidatorSpec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="../../src/plugins/contextMenuCopyPaste/test/contextMenuCopyPaste.spec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="../../src/plugins/dragToScroll/test/dragToScroll.spec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="../../src/plugins/grouping/test/grouping.spec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="../../src/plugins/manualColumnFreeze/test/manualColumnFreeze.spec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="../../src/plugins/mergeCells/test/MergeCells.canMergeRange.spec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="../../plugins/removeRow/test/jquery.handsontable.removeRow.spec.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+  <script>
+    document.writeln('<scr' + 'ipt src="spec/MemoryLeakTest.js?v=' + parseInt(Math.random() * 99999, 10) + '"></scr' + 'ipt>');
+  </script>
+  
+
+
+  <script src="lib/jasmine/reporter.js"></script>
+  <script src="lib/jquery.simulate.js"></script>
+  <script src="lib/jasmine/jasmine-helper.js"></script>
+
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,1 @@
+sc stop postgresql-x64-9.3

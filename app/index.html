@@ -1,0 +1,540 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset = "utf-8">
+	<meta name = "viewport" content = "width=device-width, initial-scale=1">
+	<title>Petroleum Explorer</title>
+	<!-- build:css styles/vendor.css -->
+	<!-- bower:css -->
+	<link rel="stylesheet" href="bower_components/magnific-popup/dist/magnific-popup.css">
+	<link rel="stylesheet" href="bower_components/handsontable/dist/jquery.handsontable.full.css"/>
+	<!-- Rickshaw css -->
+	<link rel="stylesheet" href="bower_components/rickshaw/rickshaw.css"/>
+	<link type="text/css" rel="stylesheet" href="bower_components/rickshaw/src/css/graph.css">
+	<link type="text/css" rel="stylesheet" href="bower_components/rickshaw/src/css/detail.css">
+	<link type="text/css" rel="stylesheet" href="bower_components/rickshaw/src/css/legend.css">
+	<link type="text/css" rel="stylesheet" href="styles/extensions/extensions.css?v=2">
+	<!-- endbower -->
+	<!-- endbuild -->
+
+	<!-- build:css styles/main.css -->
+	<link rel="stylesheet" href="styles/style.css">
+	<link rel="stylesheet" href="styles/fonts/icomoon/style.css"/>
+	<!-- endbuild -->
+
+	<script src = "http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+	<link rel="shortcut icon" href="resources/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="resources/favicon.ico" type="image/x-icon">
+</head>
+<body>
+	<main id = "map-canvas"></main>
+	<a target="_blank" href="http://www.ucalgary.ca/wangx/team" id="group-logo-link">
+		<img id="group-logo" src="resources/logo-small.png" alt="Intelligent Geospatial Data Mining Laboratory" title="Intelligent Geospatial Data Mining Laboratory">
+	</a>
+
+	<div id="info-visualization" class="white-popup mfp-hide mfp-with-anim">
+		<table>
+			<tr>
+				<td>
+					<div id="control-panel-container">
+						<div id="control-panel">
+						<h3>Control panel</h3>
+						<hr>
+
+						<div id = "visualizationAccordion">
+
+							<h5>Bar Chart</h5>
+							<div class = "bar-chart accordion-content">
+								<select id = "bar-chart-attributes" placeholder = "Bar Chart" name = "attributes" results = "10" autosave = "Attributes">
+									<option value = "none"></option>
+									<option value = "st_avg_injection_hour">Average Injection Hours</option>
+									<option value = "st_avg_production_oil">Average Oil Production</option>
+									<option value = "st_avg_sor">Average SOR</option>
+									<option value = "st_avg_injection_steam">Average Steam Injection</option>
+									<option value = "w_drillers_total_depth">Well Drillers Total Depth</option>
+								</select>
+							</div>
+
+							<h5>Pie Chart</h5>
+							<div class = "pie-chart accordion-content">
+								<select id = "pie-chart-attributes" placeholder = "Pie Chart" name = "attributes" results = "10" autosave = "Attributes">
+									<option value="none"></option>
+									<option value = "w_class">Well Class</option>
+									<option value = "w_current_status">Well Current Status</option>
+									<option value = "w_operator">Well Operator</option>
+									<option value = "w_province">Well Province</option>
+									<option value = "w_type">Well Type</option>
+									<option value = "w_pad">Pad</option>
+								</select>
+							</div>
+
+							<h5>Time Series</h5>
+							<div id="time-series-accordion-content" class = "time-series accordion-content">
+								<div id="time-series-uwi-selection">
+									<label id="time-series-uwi-label"><b>Unique Well Identifier</b></label>
+									<br>
+									<input type="text" id="time-series-uwi" placeholder="xx/xx-xx-xxx-xxWx/x" name="time-series-uwi" maxlength = "19">
+								</div>
+								<hr>
+								<select id = "time-series-attributes" placeholder = "Time Series" name = "attributes" results = "10" autosave = "Attributes">
+									<option value="none"></option>
+									<option value="injection">Injection</option>
+									<option value="production">Production</option>
+									<option value="sor">SOR</option>
+									<option value="statuses">Well Status</option>
+								</select>
+							</div>
+
+						</div>
+						<hr>
+						<input type = "button" id = "applyVisualization" value = "Apply"/>
+						<input type = "button" id = "clearVisualization" value = "Clear"/>
+					</div>
+					</div>
+				</td>
+				<td>
+					<div id="visualization-container">
+						<div id="visualization-header">
+							<label id="visualization-title"></label>
+							<br>
+							<label id="visualization-subtitle"></label>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<aside class = "mapToolbar">
+		<button title = "Show toolbar" class = "show-toolbar"><i class = "icon-expand"></i></button>
+
+		<div class = "toolbar-buttons">
+			<button title = "Search" data-target = "search-form" class = "show-search">
+				<i class = "icon-search"></i>
+			</button>
+			<button title = "Polygon selection" data-target = "selection-form" class = "show-selection">
+				<img id="polygon-icon" src="resources/polygon.png">
+	 		</button>
+			<button title = "Data mining" data-target = "classification-form" class = "show-classification">
+				<i class = "icon-tree"></i>
+			</button>
+			<button title = "Data visualization" data-target = "visualization-form" class = "show-visualization">
+				<i class = "icon-pie"></i>
+			</button>
+			<button title = "Export" data-target = "export-form" class = "show-export">
+				<i class = "icon-download2"></i>
+			</button>
+		</div>
+
+		<article class = "sidebar-content-container">
+
+			<section class = "search-form">
+				<form action = "/">
+					<fieldset class="fieldset-class">
+						<hr>
+						<h4>Search</h4>
+						<input type="button" id="clear-search" value = "Clear all"/>
+
+						<div id = "accordion">
+							<h5>UWI</h5>
+
+							<div class = "uwi-search accordion-content">
+								<input type = "search" name = "uwi" id = "uwi" placeholder = "UWI Code" maxlength = "19" results = 10" autosave = "uwi">
+							</div>
+							<h5>UWI Fields</h5>
+
+							<div class = "grouped-search accordion-content">
+								<table>
+									<tr>
+										<td></td>
+										<td></td>
+										<td><label for = "lsd"><i>LSD</i></label></td>
+										<td></td>
+										<td><label for = "section"><i>SEC</i></label></td>
+										<td></td>
+										<td><label for = "township">TWP</label></td>
+										<td></td>
+										<td><label for = "range">RNG</label></td>
+										<td></td>
+										<td><label for = "meridian">MER</label></td>
+										<td></td>
+										<td></td>
+									</tr>
+
+									<tr>
+										<td>
+											<input type = "search" name = "prefix" id = "prefix" maxlength = "2" pattern = "{d}2" autosave = "prefix">
+										</td>
+										<td><label>/</label></td>
+										<td>
+											<input type = "search" name = "lsd" id = "lsd" results = "10" maxlength = "2" pattern = "{d}2" autosave = "lsd">
+										</td>
+										<td><label>-</label></td>
+										<td>
+											<input type = "search" name = "section" id = "section" results = "10" maxlength = "2" pattern = "{d}2" autosave = "section">
+										</td>
+										<td><label>-</label></td>
+										<td>
+											<input type = "search" name = "township" id = "township" results = "10" maxlength = "3" pattern = "{d}3" autosave = "township">
+										</td>
+										<td><label>-</label></td>
+										<td>
+											<input type = "search" name = "range" id = "range" results = "10" maxlength = "2" pattern = "{d}2" autosave = "range">
+										</td>
+										<td><label>W</label></td>
+										<td>
+											<input type = "search" id = "meridian" name = "meridian" results = "10" maxlength = "1" pattern = "{d}1" autosave = "meridian">
+										</td>
+										<td><label>/</label></td>
+										<td>
+											<input type = "search" name = "event" id = "event" maxlength = "1" pattern = "{d}1" autosave = "event">
+										</td>
+									</tr>
+								</table>
+							</div>
+
+							<h5>Company</h5>
+
+							<div class = "company-search accordion-content">
+								<input type = "search" id = "company" placeholder = "Company" name = "company" results = "10" autosave = "company">
+							</div>
+
+							<h5>Status</h5>
+
+							<div class = "status-search accordion-content">
+
+								<select id = "status" placeholder = "Status" name = "status" results = "10" autosave = "status">
+									<option value = "none"></option>
+									<option value = "Abandoned">Abandoned</option>
+									<option value = "Abandoned & Whipstocked">Abandoned & Whipstocked</option>
+									<option value = "Abandoned Zone">Abandoned Zone</option>
+									<option value = "Drilled and Cased">Drilled and Cased</option>
+									<option value = "Observation">Observation</option>
+									<option value = "Steam Assis Gravity Drain">Steam Assis Gravity Drain</option>
+									<option value = "Suspended Steam Assis Gravity Drain">Suspended Steam Assis Gravity Drain</option>
+								</select>
+							</div>
+
+							<h5>Project</h5>
+
+							<div class = "project-search accordion-content">
+
+								<select id = "project" placeholder = "Project" name = "project" results = "10" autosave ="project">
+									<option value = "none"></option>
+									<option value = "Suncor Firebag">Suncor Firebag</option>
+									<option value = "Husky Tucker">Husky Tucker</option>
+									<option value = "Devon Jackfish">Devon Jackfish</option>
+									<option value = "Cenovus Christina Lake">Cenovus Christina Lake</option>
+									<option value = "Nexen Long Lake">Nexen Long Lake</option>
+									<option value = "Suncor MacKay River">Suncor MacKay River</option>
+								</select>
+							</div>
+						</div>
+						<hr>
+					</fieldset>
+				</form>
+			</section>
+
+			<section class = "selection-form">
+				<form action = "/">
+					<fieldset class="fieldset-class">
+						<hr>
+						<h4>Polygon selection</h4>
+
+						<div id="selectionContent">
+							<div id="polygon-selection-switch" class="onoffswitch">
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">
+								<label class="onoffswitch-label" for="myonoffswitch">
+									<span class="onoffswitch-inner"></span>
+									<span class="onoffswitch-switch"></span>
+								</label>
+							</div>
+
+							<table id="selectionTable">
+								<tr>
+									<td>
+										<img src="resources/red-pin-smaller.png">
+										<img src="resources/blue-pin-smaller.png">
+									</td>
+									<td>
+										<img src="resources/top-red-marker.png">
+										<img src="resources/top-blue-marker.png">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<input type="radio" name="selection" value="bottom" checked="true" disabled="true">Underground
+									</td>
+									<td>
+										<input type="radio" name="selection" value="top" disabled="true">Surface
+									</td>
+								</tr>
+							</table>
+							<hr>
+
+							<input type = "button" id = "polygon-highlight-markers-button" value = "Highlight wells" disabled="true"/>
+							<input type = "button" id = "polygon-clear-highlighted-markers-button" value = "Clear highlighted wells" disabled="true"/>
+							<div class="separator"></div>
+							<input type = "button" id = "polygon-select-markers-button" value = "Select wells" disabled="true"/>
+							<input type = "button" id = "polygon-remove-markers-button" value = "Remove wells" disabled="true"/>
+							<div class="separator"></div>
+							<input type = "button" id = "polygon-reset-markers-button" value = "Reset selection" disabled="true"/>
+						</div>
+						<hr>
+					</fieldset>
+				</form>
+			</section>
+
+			<section class = "classification-form">
+				<form action = "/classification">
+					<fieldset class="fieldset-class">
+						<hr>
+						<h4>Data mining</h4>
+
+						<div id="classificationContent">
+							<div id="classification-switch" class="onoffswitch">
+								<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"
+									   id="myclassificationonoffswitch">
+								<label class="onoffswitch-label" for="myclassificationonoffswitch">
+									<span class="onoffswitch-inner"></span>
+									<span class="onoffswitch-switch"></span>
+								</label>
+							</div>
+
+							<div id = "classificationAccordion">
+								<h5>Categorical classification</h5>
+								<div class="classification-categorical accordion-content">
+									<select id="classification-categorical-fields" placeholder="Classification" name="attributes" results ="10" autosave="Attributes" disabled="true">
+										<option value = "none"></option>
+										<option value = "w_class">Well Class</option>
+										<option value = "w_current_status">Well Current Status</option>
+										<option value = "w_type">Well Type</option>
+										<option value = "w_pad">Pad</option>
+									</select>
+								</div>
+
+								<h5>Numerical classification</h5>
+								<div class="classification-numerical accordion-content">
+									<select id = "classification-numerical-fields" placeholder = "Classification" name ="attributes" results ="10" autosave = "Attributes" disabled="true">
+										<option value = "none"></option>
+										<option value = "st_avg_injection_hour">Average Injection Hours</option>
+										<option value = "st_avg_production_oil">Average Oil Production</option>
+										<option value = "st_avg_sor">Average SOR</option>
+										<option value = "st_avg_injection_steam">Average Steam Injection</option>
+										<option value = "w_drillers_total_depth">Well Drillers Total Depth</option>
+									</select>
+									<hr>
+
+									<div id="classification-numeric-parameters">
+										<input type="radio" id="equal-method" name="classification-method" value="equal" disabled="true">
+										<label id="equal-interval-label" for="equal-method">Equal Interval</label>
+										<br>
+										<input type="radio" id="quantile-method" name="classification-method" value="quantile" disabled="true">
+										<label id="quantile-label" for="quantile-method">Quantile</label>
+
+										<label id="classes-number-label" for="classes-number">Classes</label>
+										<select id="classes-number" placeholder = "Classification" name="attributes" results ="10" autosave = "Attributes" disabled="true">
+											<option value = "none"></option>
+											<option value = "2">2</option>
+											<option value = "3">3</option>
+											<option value = "4">4</option>
+											<option value = "5">5</option>
+											<option value = "6">6</option>
+											<option value = "7">7</option>
+											<option value = "8">8</option>
+											<option value = "9">9</option>
+										</select>
+									</div>
+								</div>
+
+								<h5>K-means clustering</h5>
+								<div class="clustering accordion-content">
+									<ul class="checkbox-grid">
+										<li>
+											<input type="checkbox" name="Well Drillers Total Depth" id="chk-drillers-depth" value="w_drillers_total_depth" disabled="true"/>
+											<label for="chk-drillers-depth">Drillers Depth</label>
+										</li>
+										<li>
+											<input type="checkbox" name="Average Injection Hours" id="chk-avg-inj-hours" value="st_avg_injection_hour" disabled="true"/>
+											<label for="chk-avg-inj-hours">Injection Hours</label>
+										</li>
+										<li>
+											<input type="checkbox" name="Location" id="chk-location" value="w_location" disabled="true"/>
+											<label for="chk-location">Location</label>
+										</li>
+										<li>
+											<input type="checkbox" name="Average Oil Production" id="chk-avg-oil-prod" value="st_avg_production_oil" disabled="true"/>
+											<label for="chk-avg-oil-prod">Oil Production</label>
+										</li>
+										<li>
+											<input type="checkbox" name="Average SOR" id="chk-avg-sor" value="st_avg_sor" disabled="true"/>
+											<label for="chk-avg-sor">SOR</label>
+										</li>
+										<li>
+											<input type="checkbox" name="Average Injection Steam" id="chk-avg-inj-steam" value="st_avg_injection_steam" disabled="true"/>
+											<label for="chk-avg-inj-steam">Steam Injection</label>
+										</li>
+									</ul>
+
+									<hr>
+									<label id="clusters-number-label" for="classes-number">Number of clusters</label>
+									<select id="clusters-number" placeholder = "Classification" name="attributes" results ="10" autosave = "Attributes" disabled="true">
+										<option value = "none"></option>
+										<!--<option value = "auto">Auto</option>-->
+										<option value = "2">2</option>
+										<option value = "3">3</option>
+										<option value = "4">4</option>
+										<option value = "5">5</option>
+										<option value = "6">6</option>
+										<option value = "7">7</option>
+										<option value = "8">8</option>
+										<option value = "9">9</option>
+									</select>
+								</div>
+
+								<h5>Association rule mining</h5>
+								<div class="association-rule">
+								<input type="button" id="association-rule-button" value =
+										"Apply"/>
+								</div>
+
+							</div>
+						</div>
+						<hr>
+					</fieldset>
+				</form>
+			</section>
+
+			<section class = "visualization-form">
+				<form action = "/visualization">
+					<fieldset class="fieldset-class">
+						<hr>
+						<h4>Data visualization</h4>
+
+						<div id="visualizationContent">
+							<a id="visualization-link" href="#visualization-popup" class="open-visualization" data-effect="mfp-zoom-in">
+								<input type = "button" id = "openVisualization" value = "Open"/>
+							</a>
+						</div>
+
+						<hr>
+					</fieldset>
+				</form>
+			</section>
+
+			<section class = "export-form">
+				<form action = "/export">
+					<fieldset class="fieldset-class">
+						<hr>
+						<h4>Export</h4>
+
+						<div id="exportContent">
+							<label id = "fileNameLabel" ><b>File name</b> (optional)</label>
+							<input type = "text" id = "fileName" placeholder = "Example.csv" name = "fileName">
+							<input type = "button" id = "exportButton" value = "Export"/>
+						</div>
+
+						<hr>
+					</fieldset>
+				</form>
+			</section>
+
+		</article>
+	</aside>
+	<footer>
+		<aside class = "search-results-table" title = "Full Results">
+			<button title = "Toggle Full Table View" class = "toggle-table"><i class = "icon-table2"></i></button>
+			<article class = "full-table-content">
+				<section class = "filter-form">
+					<form action = "/filter">
+						<fieldset>
+							<h4>Add Filter Parameter</h4>
+							<button type = "button" id = "add-constraint" class = "filterButton" disabled="true">
+								<i class = "icon-plus"></i>
+							</button>
+							<select name = "tableColumnFilter" id = "tableColumnFilter">
+
+								<option value = "0">Select a column</option>
+								<option value = "w_uwi">UWI</option>
+								<option value = "w_name">Name</option>
+								<option value = "w_drillers_total_depth">Drillers Total Depth</option>
+								<option value = "w_operator">Operator</option>
+								<option value = "w_project">Project</option>
+								<option value = "w_current_status">Current Status</option>
+								<option value = "w_province">Province</option>
+								<option value = "w_class">Class</option>
+								<option value = "w_type">Type</option>
+								<option value = "w_pad">Pad</option>
+							</select>
+							<hr><hr>
+						</fieldset>
+					</form>
+				</section>
+				<table class = "full-results-table" aria-hidden = "true"></table>
+			</article>
+		</aside>
+
+		<!-- build:js scripts/vendor.js -->
+		 <!-- bower:js -->
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="bower_components/jquery-ui/ui/jquery-ui.js"></script>
+		<script src="bower_components/d3/d3.min.js"></script>
+		<script src="bower_components/d3-timeline/src/d3-timeline.js"></script>
+		<script src="bower_components/handsontable/dist/jquery.handsontable.full.js"></script>
+		<script src="bower_components/highcharts/highcharts.js"></script>
+		<script src="bower_components/highcharts/highcharts-more.js"></script>
+		<script src="bower_components/highcharts/modules/exporting.js"></script>
+		<script src="bower_components/magnific-popup/dist/jquery.magnific-popup.js"></script>
+
+		<!-- Rickshaw components-->
+		<script src="bower_components/rickshaw/rickshaw.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Class.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Compat.ClassList.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Graph.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Graph.Renderer.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Graph.Renderer.Area.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Graph.Renderer.Line.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Graph.Renderer.Bar.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Graph.Renderer.ScatterPlot.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Graph.Renderer.Stack.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Graph.RangeSlider.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Graph.RangeSlider.Preview.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Graph.HoverDetail.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Graph.Annotate.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Graph.Legend.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Graph.Axis.Time.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Graph.Behavior.Series.Toggle.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Graph.Behavior.Series.Order.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Graph.Behavior.Series.Highlight.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Graph.Smoother.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Fixtures.Time.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Fixtures.Time.Local.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Fixtures.Number.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Fixtures.RandomData.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Fixtures.Color.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Color.Palette.js"></script>
+		<script src="bower_components/rickshaw/src/js/Rickshaw.Graph.Axis.Y.js"></script>
+		<script src="scripts/extensions/extensions.js"></script>
+
+		 <!-- endbower -->
+		<!-- endbuild -->
+		<!-- build:js scripts/main.js -->
+		<script src="scripts/components/mapToolbar/map-toolbar.js"></script>
+		<script src="scripts/components/search/search-controller.js"></script>
+		<script src="scripts/components/search/search-view.js"></script>
+		<script src="scripts/components/fullTable/full-table.js"></script>
+		<script src="scripts/components/mapSection/map-canvas.js"></script>
+		<script src="scripts/components/mapSection/polygon-selection.js"></script>
+		<script src="scripts/components/visualization/visualization-controller.js"></script>
+		<script src="scripts/components/visualization/visualization-view.js"></script>
+		<script src="scripts/components/export/export-controller.js"></script>
+		<script src="scripts/components/export/export-view.js"></script>
+		<script src="scripts/components/classification/classification-controller.js"></script>
+		<script src="scripts/components/classification/classification-view.js"></script>
+		<script src="scripts/main.js"></script>
+		 <!-- endbuild -->
+	</footer>
+</body>
+</html>

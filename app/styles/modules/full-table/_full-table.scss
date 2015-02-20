@@ -1,0 +1,167 @@
+/* =============================================================================
+Variables
+========================================================================== */
+$mapToolbarButtonColour: rgb(220,220,220);
+$mapToolbarButtonTextColour: black;
+$filterTableLeft: 21.5em;
+
+/* =============================================================================
+Full Table
+========================================================================== */
+.ui-dialog{
+	font-size: 0.85em;
+	overflow: hidden;
+	padding: 0em;
+
+	.ui-dialog-title{
+		font-size: 1.25em;
+		font-weight: bold;
+	}
+
+	.ui-dialog-titlebar{
+		margin-bottom: 0em;
+		background: darken($body-background, 5);
+	}
+
+	.ui-button{
+		padding: 0.5em;
+		outline: none;
+	}
+
+	select{
+		outline: none;
+	}
+
+	.ui-dialog-titlebar-close{
+		display: none;
+	}
+}
+
+.toggle-table {
+	@extend %fixed;
+	@extend %bordered;
+	left: 48.65%;
+	bottom: 0;
+	z-index: 5;
+	@extend %margin-none;
+	outline: none;
+	font-size: 1.2em;
+	color: $mapToolbarButtonTextColour;
+	border: 2px outset buttonface;
+	font-size: 1.2em;
+	padding: 0.6em 0.6em 0.5em 0.6em;
+	display: none;
+	&:active, &.active, &:hover {
+		background: darken($mapToolbarButtonColour, 15);
+	}
+}
+
+.filter-form{
+	position:absolute;
+	display: inline-block;
+	border-right: solid black 1px;
+	height: inherit;
+	width: $filterTableLeft;
+	top: inherit;
+	overflow-y: auto;
+	background: darken($body-background, 5);
+
+	h4{
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+	}
+
+	fieldset{
+		border: none;
+		width: 18.5em;
+	}
+}
+
+#full-results-table{
+	display: inline-block;
+	top: inherit;
+	position:absolute;
+	left: $filterTableLeft;
+	padding: 0.5em;
+
+	.htDimmed{
+		color: black;
+	}
+
+	th{
+		background: $mapToolbarButtonColour;
+		color: black;
+	}
+
+	.wtHider{
+		padding-bottom: .75em;
+	}
+
+	.dragdealer{
+		right: 0;
+		background: lighten($mapToolbarButtonColour, 15);
+		&.handle{
+			background: darken($mapToolbarButtonColour, 50);
+		}
+	}
+
+	.currentRow{
+		background: $mapToolbarButtonColour;
+	}
+
+	.current{
+		background: $mapToolbarButtonColour;
+	}
+}
+
+.filterButton{
+	display: inline-block;
+	top: inherit;
+	padding: 0.5em;
+	outline: none;
+	font-size: 0.85em;
+	margin-left: 0em;
+}
+
+.filterBtnParent{
+	display: inline-block;
+	float: right;
+	font-size: 0.85em;
+	margin: 0.3em 0.1em 0em 0em;
+}
+
+.filterInputField{
+	width: 98%;
+}
+
+.filterConstraintField{
+	margin-left: 0em;
+}
+
+#tableColumnFilter{
+	display: inline-block;
+	top: inherit;
+	width: 86%;
+	text-align: left;
+
+	label{
+		display: inline-block;
+	}
+}
+
+.ColVis_collection {
+	@extend %normal-padding;
+	@extend %margin-none;
+	@extend %bordered;
+	list-style: none;
+	label {
+		@extend %block;
+		cursor: pointer;
+	}
+}
+
+#checkAll {
+	position: absolute;
+	top: 0.8em;
+	margin-left: 0.64em;
+}

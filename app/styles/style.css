@@ -1,0 +1,933 @@
+/* =============================================================================
+Variables
+========================================================================== */
+/* Type */
+/* Support Settings */
+/* Measurements */
+/*Transitions */
+/* Colours */
+/* Constraints */
+/* =============================================================================
+Visibility Helpers
+========================================================================== */
+/* For image replacement */
+/* Hide for both screenreaders and browsers:
+   css-discuss.incutio.com/wiki/Screenreader_Visibility */
+.ui-resizable-disabled .ui-resizable-handle,
+.ui-resizable-autohide .ui-resizable-handle {
+  display: none; }
+
+/* Hide only visually, but have it available for screenreaders: by Jon Neal.
+  www.webaim.org/techniques/css/invisiblecontent/  &  j.mp/visuallyhidden */
+/* Hide visually and from screenreaders, but maintain layout */
+/* The Magnificent Clearfix: Updated to prevent margin-collapsing on child elements in most situations.
+   nicolasgallagher.com/micro-clearfix-hack/ */
+/* =============================================================================
+Overflow
+========================================================================== */
+/* =============================================================================
+Margins
+========================================================================== */
+/* Normal margin */
+.toggle-table, .ColVis_collection, body {
+  margin: 0; }
+
+/* Normal margin combinations */
+/* Large Margin */
+/* Small Margin */
+.ui-dialog .ui-dialog-titlebar {
+  margin-bottom: 0.76923em; }
+
+/* Mini Margin */
+/* =============================================================================
+Padding
+========================================================================== */
+/* Normal padding */
+.ColVis_collection, .ui-dialog {
+  padding: 1em; }
+
+body {
+  padding: 0; }
+
+/* Large Padding */
+/* Small Padding */
+.mapToolbar, .ui-dialog .ui-dialog-titlebar {
+  padding: 0.76923em; }
+
+/* =============================================================================
+Border radius
+========================================================================== */
+/* Normal border radii */
+/* Large border radii */
+/* No rounded radii (useful for overriding other elements with radii) */
+.mapToolbar {
+  box-sizing: border-box; }
+
+body {
+  transition: 0.5s all ease; }
+
+/* =============================================================================
+Opacity/visibility
+========================================================================== */
+button[disabled] {
+  opacity: 0.5; }
+
+/* =============================================================================
+Borders
+========================================================================== */
+.mapToolbar, .toggle-table, .ColVis_collection, .ui-dialog {
+  border: 1px solid black; }
+
+.ui-dialog .ui-dialog-titlebar {
+  border-bottom: 1px solid black; }
+
+/* =============================================================================
+Floats
+========================================================================== */
+/* =============================================================================
+Positions
+========================================================================== */
+.mapToolbar, .ui-resizable-handle {
+  position: absolute; }
+
+.toggle-table {
+  position: fixed; }
+
+.ui-resizable {
+  position: relative; }
+
+/* =============================================================================
+Display modes
+========================================================================== */
+.ColVis_collection label {
+  display: block; }
+
+.mapToolbar button.show-toolbar.active, .mapToolbar .grouped-search input {
+  display: inline-block; }
+
+/* =============================================================================
+Variables
+========================================================================== */
+/* =============================================================================
+Map Toolbar
+========================================================================== */
+.mapToolbar {
+  right: 0.4em;
+  z-index: 5;
+  background: #f2f2f2;
+  top: 3em;
+  display: none;
+  padding: 0.07em;
+  box-shadow: 0em 0em 0em 0.1em rgba(127, 127, 127, 0.3);
+  border-radius: 0.2em;
+  background-color: white; }
+  .mapToolbar button {
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    outline: none;
+    font-size: 1.2em;
+    color: black; }
+    .mapToolbar button:active, .mapToolbar button.active, .mapToolbar button:hover {
+      background: #b6b6b6; }
+  .mapToolbar label {
+    font-size: .85em; }
+  .mapToolbar table, .mapToolbar td, .mapToolbar tr, .mapToolbar tbody {
+    border-spacing: 0px; }
+  .mapToolbar .error-msg {
+    color: red;
+    padding-left: 1em; }
+  .mapToolbar .alert-msg {
+    padding-left: 1em; }
+  .mapToolbar .toolbar-buttons {
+    display: inline; }
+  .mapToolbar .sidebar-content-container {
+    display: inline; }
+  .mapToolbar .search-form, .mapToolbar .selection-form, .mapToolbar .classification-form, .mapToolbar .filter-form, .mapToolbar .export-form, .mapToolbar .graph-form, .mapToolbar .visualization-form {
+    width: 20em; }
+  .mapToolbar .fieldset-class {
+    padding-top: 0em;
+    padding-bottom: 0em; }
+  .mapToolbar .search-form, .mapToolbar .selection-form, .mapToolbar .classification-form, .mapToolbar .filter-form, .mapToolbar .export-form, .mapToolbar .graph-form, .mapToolbar .visualization-form {
+    padding-top: 0em; }
+  .mapToolbar .grouped-search {
+    align-content: center;
+    text-align: center; }
+    .mapToolbar .grouped-search input {
+      align-content: center;
+      text-align: center;
+      width: 1.7em; }
+      .mapToolbar .grouped-search input[type="search"]::-webkit-search-decoration, .mapToolbar .grouped-search input[type="search"]::-webkit-search-cancel-button, .mapToolbar .grouped-search input[type="search"]::-webkit-search-results-button, .mapToolbar .grouped-search input[type="search"]::-webkit-search-results-decoration {
+        display: none; }
+      .mapToolbar .grouped-search input#township {
+        width: 2.2em; }
+      .mapToolbar .grouped-search input#meridian, .mapToolbar .grouped-search input#event {
+        width: 1.6em; }
+  .mapToolbar input {
+    border: 1px solid black;
+    width: 80%; }
+    .mapToolbar input[type="search"]::-webkit-search-decoration, .mapToolbar input[type="search"]::-webkit-search-cancel-button {
+      display: none; }
+    .mapToolbar input[type="button"] {
+      border: 2px outset buttonface;
+      border-image-source: initial;
+      border-image-slice: initial;
+      border-image-width: initial;
+      border-image-outset: initial;
+      border-image-repeat: initial; }
+  .mapToolbar h5 {
+    margin: 0em; }
+  .mapToolbar h4 {
+    margin-top: 0em;
+    margin-bottom: 0.75em;
+    width: 90%;
+    margin-bottom: 0.5em; }
+  .mapToolbar .accordion-content {
+    text-align: center; }
+  .mapToolbar #clear-search {
+    padding: 0.2em 0.3em 0.2em 0.3em;
+    position: relative;
+    top: -2.4em;
+    float: right;
+    font-size: 0.8em;
+    width: 25%; }
+  .mapToolbar fieldset {
+    border: none; }
+  .mapToolbar #results-table {
+    font-size: .85em; }
+  .mapToolbar .handsontable .htDimmed {
+    color: black; }
+  .mapToolbar .handsontable th {
+    background: gainsboro;
+    color: black; }
+  .mapToolbar .handsontable .wtHider {
+    padding-bottom: .75em; }
+  .mapToolbar .handsontable .dragdealer {
+    right: 0;
+    background: white; }
+    .mapToolbar .handsontable .dragdealer.handle {
+      background: #5d5d5d; }
+  .mapToolbar .handsontable .currentRow {
+    background: gainsboro; }
+  .mapToolbar .handsontable .current {
+    background: gainsboro; }
+
+table {
+  width: 100%; }
+
+.graphButton {
+  display: inline-block;
+  top: inherit;
+  padding: 0.5em;
+  outline: none; }
+
+.graphBtnParent {
+  width: 2.25em;
+  display: inline-block;
+  float: right; }
+  .graphBtnParent button {
+    font-size: 0.75em; }
+
+#visualizationContent {
+  text-align: center; }
+
+#selectionContent {
+  display: inline; }
+
+#polygon-selection-switch {
+  float: right;
+  top: -2em; }
+
+#polygon-icon {
+  /* Just a way to keep the image with the same size as the rest */
+  height: 18px;
+  width: 18px; }
+
+#map-canvas {
+  height: 100%;
+  right: 8em;
+  position: static !important; }
+
+#chart-link {
+  float: right; }
+
+#map-info-control {
+  padding: 0.5em;
+  left: 7.3em !important;
+  width: 17em; }
+  #map-info-control #map-info-controlUI {
+    background-color: white;
+    box-shadow: 0em 0em 0em 0.18em rgba(127, 127, 127, 0.3);
+    border-radius: 0.4em;
+    cursor: default; }
+    #map-info-control #map-info-controlUI #map-info-control-text {
+      font-family: "Arial", "sans-serif";
+      font-size: 1.3em;
+      padding-left: 0.3em;
+      padding-right: 0.3em;
+      text-align: center;
+      color: #7f7f7f; }
+
+#map-layers-control {
+  padding: 0.5em;
+  left: 7.3em !important;
+  top: 4.5em !important;
+  width: 13.45em; }
+  #map-layers-control #map-layers-controlUI {
+    background-color: white;
+    box-shadow: 0em 0em 0em 0.18em rgba(127, 127, 127, 0.3);
+    border-radius: 0.4em;
+    cursor: default; }
+    #map-layers-control #map-layers-controlUI #map-layers-control-content {
+      font-family: "Arial", "sans-serif";
+      font-size: 1.3em;
+      padding-left: 0.3em;
+      padding-right: 0.3em;
+      color: #7f7f7f; }
+
+#layer-table {
+  text-align: center; }
+  #layer-table #column-left-align {
+    text-align: left; }
+
+#view-time-series-button {
+  width: 100%;
+  margin-top: 1em; }
+
+/* =============================================================================
+Variables
+========================================================================== */
+/* =============================================================================
+Full Table
+========================================================================== */
+.ui-dialog {
+  font-size: 0.85em;
+  overflow: hidden;
+  padding: 0em; }
+  .ui-dialog .ui-dialog-title {
+    font-size: 1.25em;
+    font-weight: bold; }
+  .ui-dialog .ui-dialog-titlebar {
+    margin-bottom: 0em;
+    background: #f2f2f2; }
+  .ui-dialog .ui-button {
+    padding: 0.5em;
+    outline: none; }
+  .ui-dialog select {
+    outline: none; }
+  .ui-dialog .ui-dialog-titlebar-close {
+    display: none; }
+
+.toggle-table {
+  left: 48.65%;
+  bottom: 0;
+  z-index: 5;
+  outline: none;
+  font-size: 1.2em;
+  color: black;
+  border: 2px outset buttonface;
+  font-size: 1.2em;
+  padding: 0.6em 0.6em 0.5em 0.6em;
+  display: none; }
+  .toggle-table:active, .toggle-table.active, .toggle-table:hover {
+    background: #b6b6b6; }
+
+.filter-form {
+  position: absolute;
+  display: inline-block;
+  border-right: solid black 1px;
+  height: inherit;
+  width: 21.5em;
+  top: inherit;
+  overflow-y: auto;
+  background: #f2f2f2; }
+  .filter-form h4 {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em; }
+  .filter-form fieldset {
+    border: none;
+    width: 18.5em; }
+
+#full-results-table {
+  display: inline-block;
+  top: inherit;
+  position: absolute;
+  left: 21.5em;
+  padding: 0.5em; }
+  #full-results-table .htDimmed {
+    color: black; }
+  #full-results-table th {
+    background: gainsboro;
+    color: black; }
+  #full-results-table .wtHider {
+    padding-bottom: .75em; }
+  #full-results-table .dragdealer {
+    right: 0;
+    background: white; }
+    #full-results-table .dragdealer.handle {
+      background: #5d5d5d; }
+  #full-results-table .currentRow {
+    background: gainsboro; }
+  #full-results-table .current {
+    background: gainsboro; }
+
+.filterButton {
+  display: inline-block;
+  top: inherit;
+  padding: 0.5em;
+  outline: none;
+  font-size: 0.85em;
+  margin-left: 0em; }
+
+.filterBtnParent {
+  display: inline-block;
+  float: right;
+  font-size: 0.85em;
+  margin: 0.3em 0.1em 0em 0em; }
+
+.filterInputField {
+  width: 98%; }
+
+.filterConstraintField {
+  margin-left: 0em; }
+
+#tableColumnFilter {
+  display: inline-block;
+  top: inherit;
+  width: 86%;
+  text-align: left; }
+  #tableColumnFilter label {
+    display: inline-block; }
+
+.ColVis_collection {
+  list-style: none; }
+  .ColVis_collection label {
+    cursor: pointer; }
+
+#checkAll {
+  position: absolute;
+  top: 0.8em;
+  margin-left: 0.64em; }
+
+/* =============================================================================
+Variables
+============================================================================= */
+/* =============================================================================
+Visualization
+============================================================================= */
+#info-visualization {
+  height: 92%;
+  width: 90%;
+  background-color: black;
+  padding: 0.1em 0.1em 0.1em 0.1em;
+  position: relative; }
+  #info-visualization #control-panel-container {
+    display: inline-block;
+    background-color: gainsboro;
+    overflow-y: auto;
+    position: absolute;
+    width: 22em;
+    top: inherit;
+    left: 0.3em;
+    top: 0.3em;
+    bottom: 0.3em; }
+    #info-visualization #control-panel-container #control-panel {
+      padding: 0.5em 0.5em 0.5em 0.5em;
+      width: 19.9em; }
+    #info-visualization #control-panel-container #time-series-accordion-content {
+      text-align: left; }
+    #info-visualization #control-panel-container #time-series-uwi-label {
+      font-size: 0.8em; }
+    #info-visualization #control-panel-container #time-series-uwi {
+      width: 67%;
+      padding-left: 0.2em;
+      padding-right: 0.2em; }
+    #info-visualization #control-panel-container #time-series-attributes {
+      width: 70%; }
+  #info-visualization #visualization-container {
+    position: absolute;
+    border-left-color: black;
+    display: inline-block;
+    background-color: gainsboro;
+    left: 22.55em;
+    right: 0.3em;
+    top: 0.3em;
+    bottom: 0.3em;
+    overflow: hidden;
+    text-align: center; }
+    #info-visualization #visualization-container #visualization-header {
+      height: 1.5em;
+      text-align: left;
+      padding-top: 1.5em;
+      position: absolute; }
+      #info-visualization #visualization-container #visualization-header #visualization-title {
+        font-size: 1.5em;
+        padding-left: 1em;
+        padding-top: 1em; }
+      #info-visualization #visualization-container #visualization-header #visualization-subtitle {
+        padding-left: 1.5em;
+        font-size: 1.1em; }
+    #info-visualization #visualization-container #canvas-svg {
+      width: 100%;
+      height: 100%; }
+      #info-visualization #visualization-container #canvas-svg .axis {
+        font: 10px sans-serif; }
+      #info-visualization #visualization-container #canvas-svg .axis path,
+      #info-visualization #visualization-container #canvas-svg .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges; }
+      #info-visualization #visualization-container #canvas-svg .x.axis path {
+        display: none; }
+      #info-visualization #visualization-container #canvas-svg .arc path {
+        stroke: black;
+        stroke-width: 0.02em; }
+
+.mfp-content {
+  height: 100%;
+  width: 100%; }
+
+.accordion-content {
+  text-align: center; }
+
+#applyVisualization {
+  float: right; }
+
+#clearVisualization {
+  float: left; }
+
+/*
+ * ====== Zoom effect ======
+ */
+.mfp-zoom-in {
+  /* start state */
+  /* animate in */
+  /* animate out */ }
+  .mfp-zoom-in .mfp-with-anim {
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+    transform: scale(0.8); }
+  .mfp-zoom-in.mfp-bg {
+    opacity: 0;
+    transition: all 0.3s ease-out; }
+  .mfp-zoom-in.mfp-ready .mfp-with-anim {
+    opacity: 1;
+    transform: scale(1); }
+  .mfp-zoom-in.mfp-ready.mfp-bg {
+    opacity: 0.8; }
+  .mfp-zoom-in.mfp-removing .mfp-with-anim {
+    transform: scale(0.8);
+    opacity: 0; }
+  .mfp-zoom-in.mfp-removing.mfp-bg {
+    opacity: 0; }
+
+#tooltip-window {
+  position: absolute;
+  text-align: left;
+  padding: 1em;
+  font-size: 0.8em;
+  background: black;
+  border: 0em;
+  border-radius: 0.7em;
+  pointer-events: none;
+  color: orange; }
+
+#uwi-found-msg {
+  color: forestgreen;
+  top: 1.6em; }
+
+#uwi-not-found-msg {
+  color: red;
+  top: 2em; }
+
+.mfp-close {
+  /*right: 0.8em;*/
+  /*top: 0.4em;*/ }
+
+#legend {
+  background-color: gainsboro; }
+
+#no-data-message {
+  top: 47%;
+  left: 25%;
+  position: absolute;
+  color: red;
+  font-size: 1.5em; }
+
+#missing-data-message {
+  position: absolute;
+  color: red;
+  font-size: 1.5em;
+  top: 47%;
+  left: 43%; }
+
+#time-series-uwi-selection {
+  position: relative; }
+
+.time-series-uwi-msg {
+  font-size: 0.78em;
+  position: absolute;
+  left: 17.2em; }
+
+#well-type-msg {
+  top: 2.45em; }
+
+/* =============================================================================
+Variables
+============================================================================= */
+/* =============================================================================
+Export
+============================================================================= */
+#exportContent {
+  align-content: center;
+  text-align: center; }
+  #exportContent #fileNameLabel {
+    padding-right: 38%; }
+  #exportContent #fileName {
+    font-size: 0.75em;
+    padding: 0.3em 0em 0.3em 0.3em; }
+  #exportContent #exportButton {
+    width: 81.8%;
+    font-size: 0.75em;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em; }
+
+/* =============================================================================
+Variables
+============================================================================= */
+/* =============================================================================
+Polygon selection
+============================================================================= */
+.onoffswitch {
+  position: relative;
+  width: 52px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none; }
+
+.onoffswitch-checkbox {
+  display: none; }
+
+.onoffswitch-label {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid #999999;
+  border-radius: 0px; }
+
+.onoffswitch-inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  -moz-transition: margin 0.3s ease-in 0s;
+  -webkit-transition: margin 0.3s ease-in 0s;
+  -o-transition: margin 0.3s ease-in 0s;
+  transition: margin 0.3s ease-in 0s; }
+
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 19px;
+  padding: 0;
+  line-height: 15px;
+  font-size: 12px;
+  color: white;
+  font-family: Trebuchet, Arial, sans-serif;
+  font-weight: bold;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+  background-clip: padding-box; }
+
+.onoffswitch-inner:before {
+  content: "ON";
+  padding-left: 5px;
+  background-color: #2E8DEF;
+  color: #FFFFFF; }
+
+.onoffswitch-inner:after {
+  content: "OFF";
+  padding-right: 4px;
+  background-color: #CCCCCC;
+  color: #333333;
+  text-align: right;
+  font-style: italic; }
+
+.onoffswitch-switch {
+  display: block;
+  width: 19px;
+  margin: 0px;
+  background: #000000;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 33px;
+  -moz-transition: all 0.3s ease-in 0s;
+  -webkit-transition: all 0.3s ease-in 0s;
+  -o-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s; }
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+  margin-left: 0; }
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+  right: 0px; }
+
+.info-msg {
+  padding-left: 1em; }
+
+.separator {
+  padding-bottom: 1em; }
+
+#polygon-reset-markers-button {
+  margin-bottom: 0.5em; }
+
+input[type="radio"] {
+  width: auto; }
+
+#selectionTable {
+  width: 80%;
+  text-align: center;
+  font-size: 0.9em; }
+  #selectionTable td {
+    width: 50%; }
+
+/* =============================================================================
+Variables
+========================================================================== */
+/* =============================================================================
+Classification
+========================================================================== */
+#classification-switch {
+  float: right;
+  top: -2.5em; }
+
+#classificationAccordion {
+  padding-top: 0.001em; }
+
+#classification-numeric-parameters {
+  text-align: left;
+  position: relative; }
+
+#classes-number {
+  position: absolute;
+  right: 0em;
+  width: 3.7em; }
+
+#classes-number-label {
+  position: absolute;
+  right: 0em;
+  top: 0em; }
+
+#pin-column {
+  width: 1.063em;
+  padding-right: 0.2em; }
+  #pin-column input[type="image"] {
+    border: none;
+    width: 100%; }
+
+#classification-legend-control {
+  bottom: 2em !important;
+  right: 0.7em !important;
+  width: 25.9em; }
+  #classification-legend-control #classification-legend-controlUI {
+    background-color: white;
+    box-shadow: 0em 0em 0em 0.18em rgba(127, 127, 127, 0.3);
+    border-radius: 0.4em; }
+    #classification-legend-control #classification-legend-controlUI #classification-legend-content {
+      font-family: "Arial", "sans-serif";
+      font-size: 1.3em;
+      padding-left: 0.3em;
+      padding-right: 0.3em;
+      color: #7f7f7f; }
+
+#toggle-legend {
+  width: 100%;
+  border: none;
+  color: #7f7f7f;
+  border-radius: 0.4em; }
+
+#legend-table {
+  padding-top: 0.5em; }
+
+.legend-header {
+  padding-left: 0.2em; }
+
+.checkbox-grid {
+  padding-left: 0em;
+  padding-right: 0em;
+  margin-top: 0em;
+  height: 3.7em; }
+  .checkbox-grid li {
+    display: block;
+    float: left;
+    width: 50%;
+    text-align: left; }
+    .checkbox-grid li input[type="checkbox"] {
+      margin: 0em;
+      width: auto; }
+
+#ui-accordion-classificationAccordion-panel-3 {
+  text-align: center; }
+
+/* Association rule begin */
+#association-rule-box {
+  bottom: 2em !important;
+  right: 0.7em !important;
+  width: 40em;
+  background-color: white;
+  box-shadow: 0em 0em 0em 0.18em rgba(127, 127, 127, 0.3);
+  border-radius: 0.4em;
+  font-size: 1.2em; }
+  #association-rule-box hr {
+    margin-bottom: 0.2em;
+    margin-top: 0em; }
+  #association-rule-box .arm-table-last-column {
+    text-align: center; }
+  #association-rule-box .arm-table-middle-column {
+    padding-left: 1em; }
+
+#association-rule-table th {
+  background-color: #CCCCCC; }
+#association-rule-table td {
+  background-color: #F5F5F0; }
+
+#association-rule-legend {
+  display: none;
+  table-layout: fixed;
+  text-align: center;
+  background-color: #F5F5F0; }
+  #association-rule-legend .arm-legend-pin {
+    margin-right: 0.5em; }
+  #association-rule-legend .arm-legend-header {
+    background-color: #CCCCCC; }
+
+/* Association rule end */
+/*
+=============================================================================
+Main Styles
+========================================================================== */
+body {
+  background: white;
+  font-family: "Arial", "Helvetica";
+  font-size: 100%;
+  line-height: 1.3;
+  height: 100%; }
+
+html {
+  height: 100%;
+  overflow: hidden; }
+
+button {
+  cursor: pointer; }
+  button[disabled] {
+    cursor: not-allowed; }
+
+.container {
+  max-width: 80em;
+  margin: 0 auto; }
+
+.ui-dialog {
+  background: rgba(255, 255, 255, 0.95); }
+  .ui-dialog.ui-draggable .ui-widget-header {
+    cursor: move; }
+  .ui-dialog .ui-button.ui-dialog-titlebar-close {
+    float: right; }
+
+.ui-resizable-handle {
+  font-size: 0.1em;
+  display: block; }
+
+.ui-resizable-n {
+  cursor: n-resize;
+  height: 0.5em;
+  width: 100%;
+  top: -0.3em;
+  left: 0; }
+
+.ui-resizable-s {
+  cursor: s-resize;
+  height: 0.5em;
+  width: 100%;
+  bottom: -0.3em;
+  left: 0; }
+
+.ui-resizable-e {
+  cursor: e-resize;
+  width: 0.5em;
+  right: -0.3em;
+  top: 0;
+  height: 100%; }
+
+.ui-resizable-w {
+  cursor: w-resize;
+  width: 0.5em;
+  left: -0.3em;
+  top: 0;
+  height: 100%; }
+
+.ui-resizable-se {
+  cursor: se-resize;
+  width: 12px;
+  height: 12px;
+  right: 1px;
+  bottom: 1px; }
+
+.ui-resizable-sw {
+  cursor: sw-resize;
+  width: 0.6em;
+  height: 0.6em;
+  left: -0.3em;
+  bottom: -0.3em; }
+
+.ui-resizable-nw {
+  cursor: nw-resize;
+  width: 0.6em;
+  height: 0.6em;
+  left: -0.3em;
+  top: -0.3em; }
+
+.ui-resizable-ne {
+  cursor: ne-resize;
+  width: 0.6em;
+  height: 0.6em;
+  right: -0.3em;
+  top: -0.3em; }
+
+.white-popup {
+  width: 50em;
+  height: 35em;
+  margin: 25px auto; }
+
+.ui-accordion {
+  margin-top: 1em;
+  margin-bottom: 1em; }
+
+.ui-accordion .ui-accordion-header {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  padding: .15em .15em .15em 1em;
+  min-height: 0;
+  /* support: IE7 */
+  background: #c3c3c3;
+  border: 1px solid black;
+  outline: none;
+  margin-top: 0.5em;
+  margin-bottom: 0em; }
+
+.ui-accordion .ui-accordion-content {
+  padding: .5em .5em .5em .5em;
+  border: 1px solid black;
+  border-top: none;
+  overflow: auto;
+  outline: none; }
+
+#group-logo {
+  border: 0em;
+  opacity: 0.5;
+  position: absolute;
+  bottom: 1.1em;
+  left: 0.1em;
+  width: 8em;
+  height: auto; }

@@ -1,0 +1,225 @@
+/* =============================================================================
+Variables
+========================================================================== */
+$mapToolbarButtonColour: rgb(220,220,220);
+$mapToolbarButtonTextColour: black;
+
+/* =============================================================================
+Map Toolbar
+========================================================================== */
+.mapToolbar {
+	@extend %absolute;
+	right: 0.4em;
+	z-index: 5;
+	@extend %bordered;
+	@extend %small-padding;
+	@extend %border-box;
+	background: darken($body-background, 5);
+	top: ($margin * 3);
+	//display: inline;
+	display: none;
+	padding: 0.07em;
+	box-shadow: 0em 0em 0em 0.1em rgba(127, 127, 127, 0.3);
+	border-radius: 0.2em;
+	background-color: white;
+	button{
+		padding: 0.5em 0.5em 0.5em 0.5em;
+		outline: none;
+		font-size: 1.2em;
+		color: $mapToolbarButtonTextColour;
+		&:active, &.active, &:hover{
+			background: darken($mapToolbarButtonColour, 15);
+			// These three lines makes the UI on MAC look good. But not on Windows!
+			//border-top: none;
+			//border-bottom: none;
+			//border-color: transparent;
+
+		}
+		&.show-toolbar {
+			&.active {
+				@extend %inline;
+			}
+		}
+	}
+
+	label {
+		font-size: .85em;
+	}
+
+	table, td, tr, tbody {
+		border-spacing: 0px;
+	}
+
+	.error-msg{
+		color: red;
+		padding-left: 1em;
+	}
+
+	.alert-msg{
+		padding-left: 1em;
+	}
+
+	.toolbar-buttons{
+		display: inline;
+	}
+
+	.sidebar-content-container{
+		display: inline;
+	}
+
+	%wide {
+		width: 20em;
+	}
+
+	.fieldset-class {
+		padding-top: 0em;
+		padding-bottom: 0em;
+	}
+
+	.search-form, .selection-form, .classification-form, .filter-form, .export-form, .graph-form,.visualization-form {
+		@extend %wide;
+		padding-top: 0em;
+	}
+
+	.grouped-search {
+		align-content: center;
+		text-align: center;
+		input {
+			@extend %inline;
+			align-content: center;
+			text-align: center;
+			width: 1.7em;
+			&[type="search"] {
+				&::-webkit-search-decoration, &::-webkit-search-cancel-button, &::-webkit-search-results-button, &::-webkit-search-results-decoration {
+					display: none;
+				}
+			}
+			&#township {
+				width: 2.2em;
+			}
+			&#meridian, &#event {
+				width: 1.6em;
+			}
+		}
+	}
+
+	input {
+		border: 1px solid black;
+		width: 80%;
+		&[type="search"] {
+			&::-webkit-search-decoration, &::-webkit-search-cancel-button {
+				display: none;
+			}
+		}
+		&[type="button"] {
+			border: 2px outset buttonface;
+			border-image-source: initial;
+			border-image-slice: initial;
+			border-image-width: initial;
+			border-image-outset: initial;
+			border-image-repeat: initial;
+		}
+	}
+
+	h5{
+		margin: 0em;
+	}
+
+	h4{
+		margin-top: 0em;
+		margin-bottom: 0.75em;
+		width: 90%;
+		margin-bottom: 0.5em;
+	}
+
+	.accordion-content{
+		text-align: center;
+	}
+
+	#clear-search{
+		padding: 0.2em 0.3em 0.2em 0.3em;
+		position: relative;
+		top: -2.4em;
+		float: right;
+		font-size: 0.8em;
+		width: 25%;
+	}
+
+	fieldset{
+		border: none;
+	}
+
+	#results-table{
+		font-size: .85em;
+	}
+
+	.handsontable .htDimmed{
+		color: black;
+	}
+
+	.handsontable th{
+		background: $mapToolbarButtonColour;
+		color: black;
+	}
+
+	.handsontable .wtHider{
+		padding-bottom: .75em;
+	}
+
+	.handsontable .dragdealer{
+		right: 0;
+		background: lighten($mapToolbarButtonColour, 15);
+		&.handle{
+			background: darken($mapToolbarButtonColour, 50);
+		}
+	}
+
+	.handsontable .currentRow{
+		background: $mapToolbarButtonColour;
+	}
+
+	.handsontable .current{
+		background: $mapToolbarButtonColour;
+	}
+
+}
+
+table {
+	width: 100%;
+}
+
+.graphButton{
+	display: inline-block;
+	top: inherit;
+	padding: 0.5em;
+	outline: none;
+}
+
+.graphBtnParent{
+	width: 2.25em;
+	display: inline-block;
+	float: right;
+
+	button{
+		font-size: 0.75em;
+	}
+}
+
+#visualizationContent {
+	text-align: center;
+}
+
+#selectionContent {
+	display: inline;
+}
+
+#polygon-selection-switch {
+	float: right;
+	top: -2em;
+}
+
+#polygon-icon {
+	/* Just a way to keep the image with the same size as the rest */
+	height: 18px;
+	width: 18px;
+}

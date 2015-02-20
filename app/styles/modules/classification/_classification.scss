@@ -1,0 +1,155 @@
+/* =============================================================================
+Variables
+========================================================================== */
+
+
+/* =============================================================================
+Classification
+========================================================================== */
+#classification-switch {
+	float: right;
+	top: -2.5em;
+}
+
+#classificationAccordion {
+	padding-top: 0.001em;
+}
+
+#classification-numeric-parameters {
+	text-align: left;
+	position: relative;
+}
+
+#classes-number {
+	position: absolute;
+	right: 0em;
+	width: 3.7em;
+}
+
+#classes-number-label {
+	position: absolute;
+	right: 0em;
+	top: 0em;
+}
+
+#pin-column {
+	width: 1.063em;
+	padding-right: 0.2em;
+
+	input {
+		&[type="image"] {
+			border: none;
+			width: 100%;
+		}
+	}
+}
+
+#classification-legend-control {
+	bottom: 2em !important;
+	right: 0.7em !important;
+	width: 25.9em;
+
+	#classification-legend-controlUI {
+		background-color: white;
+		box-shadow: 0em 0em 0em 0.18em rgba(127,127,127,0.3);
+		border-radius: 0.4em;
+
+		#classification-legend-content {
+			font-family: "Arial", "sans-serif";
+			font-size: 1.3em;
+			padding-left: 0.3em;
+			padding-right: 0.3em;
+			color: rgb(127,127,127);
+		}
+	}
+}
+
+#toggle-legend {
+	width: 100%;
+	border: none;
+	color: rgb(127,127,127);
+	border-radius: 0.4em;
+}
+
+#legend-table {
+	padding-top: 0.5em;
+}
+
+.legend-header {
+	padding-left: 0.2em;
+}
+
+.checkbox-grid {
+	padding-left: 0em;
+	padding-right: 0em;
+	margin-top: 0em;
+	height: 3.7em;
+
+	li {
+		display: block;
+		float: left;
+		width: 50%;
+		text-align: left;
+
+		input[type="checkbox"] {
+			margin: 0em;
+			width: auto;
+		}
+	}
+}
+
+#ui-accordion-classificationAccordion-panel-3 {
+	text-align: center;
+}
+
+/* Association rule begin */
+
+#association-rule-box {
+	bottom: 2em !important;
+	right: 0.7em !important;
+	width: 40em;
+	background-color: white;
+	box-shadow: 0em 0em 0em 0.18em rgba(127,127,127,0.3);
+	border-radius: 0.4em;
+	font-size:1.2em;
+
+	hr {
+		margin-bottom: 0.2em;
+		margin-top: 0em;
+	}
+
+	.arm-table-last-column {
+		text-align: center;
+	}
+
+	.arm-table-middle-column {
+		padding-left: 1em;
+	}
+}
+
+#association-rule-table {
+	th {
+		background-color:#CCCCCC;
+	}
+
+	td {
+		background-color:#F5F5F0;
+	}
+}
+
+#association-rule-legend {
+	display: none;
+	table-layout: fixed;
+	text-align: center;
+	background-color: #F5F5F0;
+
+	.arm-legend-pin {
+		margin-right: 0.5em;
+	}
+
+	.arm-legend-header {
+		background-color: #CCCCCC;
+	}
+}
+
+/* Association rule end */

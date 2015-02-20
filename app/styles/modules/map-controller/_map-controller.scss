@@ -1,0 +1,66 @@
+#map-canvas {
+	height: 100%;
+	right: 8em;
+	position: static !important;
+}
+
+#chart-link {
+	float: right;
+}
+
+#map-info-control{
+	padding: 0.5em;
+	left: 7.3em !important;
+	width: 13.45em;
+
+	#map-info-controlUI {
+		background-color: white;
+		box-shadow: 0em 0em 0em 0.18em rgba(127,127,127,0.3);
+		border-radius: 0.4em;
+		cursor: default;
+
+		#map-info-control-text {
+			font-family: "Arial", "sans-serif";
+			font-size: 1.3em;
+			padding-left: 0.3em;
+			padding-right: 0.3em;
+			text-align: right;
+			color: rgb(127,127,127);
+		}
+	}
+}
+
+#map-layers-control{
+	padding: 0.5em;
+	left: 7.3em !important;
+	top: 4.5em !important;
+	width: 13.45em;
+
+	#map-layers-controlUI {
+		background-color: white;
+		box-shadow: 0em 0em 0em 0.18em rgba(127,127,127,0.3);
+		border-radius: 0.4em;
+		cursor: default;
+
+		#map-layers-control-content {
+			font-family: "Arial", "sans-serif";
+			font-size: 1.3em;
+			padding-left: 0.3em;
+			padding-right: 0.3em;
+			color: rgb(127,127,127);
+		}
+	}
+}
+
+#layer-table {
+	text-align: center;
+
+	#column-left-align {
+		text-align: left;
+	}
+}
+
+#view-time-series-button {
+	width: 100%;
+	margin-top: 1em;
+}

@@ -1,0 +1,233 @@
+/* =============================================================================
+Variables
+============================================================================= */
+$visualizationForegroundColor: rgb(220,220,220);
+$visualizationBackgroundColor: black;
+$controlPanelSize: 22em;
+// Based on the controlPanelSize
+$visualizationContainerLeftPosition: 22.55em;
+$outsideContainerMargin: 0.3em;
+
+/* =============================================================================
+Visualization
+============================================================================= */
+
+#info-visualization {
+	height: 92%;
+	width: 90%;
+	background-color: $visualizationBackgroundColor;
+	padding: 0.1em 0.1em 0.1em 0.1em;
+	position: relative;
+
+	#control-panel-container {
+		display: inline-block;
+		background-color: $visualizationForegroundColor;
+		overflow-y: auto;
+		position: absolute;
+		width: $controlPanelSize;
+		top: inherit;
+		left: $outsideContainerMargin;
+		top: $outsideContainerMargin;
+		bottom: $outsideContainerMargin;
+
+		#control-panel {
+			padding: 0.5em 0.5em 0.5em 0.5em;
+			width: 19.9em;
+		}
+
+		// Time series accordion content
+		#time-series-accordion-content {
+			text-align: left;
+		}
+		#time-series-uwi-label {
+			font-size: 0.8em;
+		}
+		#time-series-uwi {
+			width: 67%;
+			padding-left: 0.2em;
+			padding-right: 0.2em;
+		}
+		#time-series-attributes {
+			width: 70%;
+		}
+	}
+
+	#visualization-container {
+		position: absolute;
+		border-left-color: $visualizationBackgroundColor;
+		display: inline-block;
+		background-color: $visualizationForegroundColor;
+		left: $visualizationContainerLeftPosition;
+		right: $outsideContainerMargin;
+		top: $outsideContainerMargin;
+		bottom: $outsideContainerMargin;
+		overflow: hidden;
+		text-align: center;
+
+		#visualization-header {
+			height: 1.5em;
+			text-align: left;
+			padding-top: 1.5em;
+			position: absolute;
+
+			#visualization-title {
+				font-size: 1.5em;
+				padding-left: 1em;
+				padding-top: 1em;
+			}
+
+			#visualization-subtitle {
+				padding-left: 1.5em;
+				font-size: 1.1em;
+			}
+		}
+
+		#canvas-svg {
+			width: 100%;
+			height: 100%;
+
+			// ====== Bar Chart (begin) ======
+			.axis {
+				font: 10px sans-serif;
+			}
+
+			.axis path,
+			.axis line {
+				fill: none;
+				stroke: #000;
+				shape-rendering: crispEdges;
+			}
+
+			.x.axis path {
+				display: none;
+			}
+			// ====== Bar Chart (end) ======
+
+			// ====== Pie Chart (begin) ======
+			.arc path {
+				stroke: black;
+				stroke-width: 0.02em;
+			}
+			// ====== Pie Chart (end) ======
+		}
+	}
+}
+
+.mfp-content {
+	height: 100%;
+	width: 100%;
+}
+
+.accordion-content{
+	text-align: center;
+}
+
+#applyVisualization {
+	float: right;
+}
+
+#clearVisualization {
+	float: left;
+}
+
+/*
+ * ====== Zoom effect ======
+ */
+.mfp-zoom-in {
+
+	/* start state */
+	.mfp-with-anim {
+		opacity: 0;
+		transition: all 0.2s ease-in-out;
+		transform: scale(0.8);
+	}
+
+	&.mfp-bg {
+		opacity: 0;
+		transition: all 0.3s ease-out;
+	}
+
+	/* animate in */
+	&.mfp-ready {
+		.mfp-with-anim {
+			opacity: 1;
+			transform: scale(1);
+		}
+		&.mfp-bg {
+			opacity: 0.8;
+		}
+	}
+
+	/* animate out */
+	&.mfp-removing {
+		.mfp-with-anim {
+			transform: scale(0.8);
+			opacity: 0;
+		}
+		&.mfp-bg {
+			opacity: 0;
+		}
+	}
+
+}
+
+#tooltip-window {
+	position: absolute;
+	text-align: left;
+	padding: 1em;
+	font-size: 0.8em;
+	background: black;
+	border: 0em;
+	border-radius: 0.7em;
+	pointer-events: none;
+	color: orange;
+}
+
+#uwi-found-msg {
+	color: forestgreen;
+	top: 1.6em;
+}
+
+#uwi-not-found-msg {
+	color: red;
+	top: 2em;
+}
+
+.mfp-close {
+	/*right: 0.8em;*/
+	/*top: 0.4em;*/
+}
+
+#legend {
+	background-color: rgb(220,220,220);
+}
+
+#no-data-message {
+	top: 47%;
+	left: 25%;
+	position: absolute;
+	color: red;
+	font-size: 1.5em;
+}
+
+#missing-data-message {
+	position: absolute;
+	color: red;
+	font-size: 1.5em;
+	top: 47%;
+	left: 43%;
+}
+
+#time-series-uwi-selection {
+	position: relative;
+}
+
+.time-series-uwi-msg {
+	font-size: 0.78em;
+	position: absolute;
+	left: 17.2em;
+}
+
+#well-type-msg {
+	top: 2.45em;
+}
